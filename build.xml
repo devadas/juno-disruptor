@@ -70,8 +70,9 @@
             </javac>
             <junit printsummary="on"
                    errorProperty="test.failed"
-                   failureProperty="test.failed">
-                <sysproperty key="com.lmax.runQueueTests" value="true"/>
+                   failureProperty="test.failed"
+                   showoutput="true">
+                <sysproperty key="com.lmax.runQueueTests" value="false"/>
                 <classpath refid="test.classpath"/>
                 <formatter type="xml"/>
                 <batchtest fork="false" todir="${dir.reports}/@{test.type}">
@@ -100,6 +101,12 @@
             depends="test:prepare, build"
             description="Run the throughput performance tests">
         <perform-tests source.dir="${dir.perf.src}" test.type="perf" include.pattern="**/*ThroughputTest.java"/>
+    </target>
+
+    <target name="j9:test"
+            depends="test:prepare, build"
+            description="Run the throughput performance tests">
+        <perform-tests source.dir="${dir.perf.src}" test.type="perf" include.pattern="**/OnePublisherToOneProcessorUniCastRawThroughputTest.java"/>
     </target>
 
     <target name="throughput:multihreaded-test"

@@ -22,6 +22,7 @@ import org.junit.Test;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This performance test illustrates direct use of the {@link Sequencer} without requiring a {@link RingBuffer}.
@@ -145,7 +146,7 @@ public class OnePublisherToOneProcessorUniCastRawThroughputTest extends Abstract
             {
                 try
                 {
-                    final long availableSequence = barrier.waitFor(nextSequence);
+                    final long availableSequence = barrier.waitFor(nextSequence, 1, TimeUnit.SECONDS);
                     while (nextSequence <= availableSequence)
                     {
                         value.set(value.get() + values[(int)nextSequence & indexMask]);

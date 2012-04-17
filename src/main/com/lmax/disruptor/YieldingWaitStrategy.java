@@ -73,6 +73,8 @@ public final class YieldingWaitStrategy implements WaitStrategy
                 final long elapsedTime = System.currentTimeMillis() - startTime;
                 if (elapsedTime > timeoutMs)
                 {
+                    System.out.printf("*** Stuck at sequence: %d, available: %d ***%n", sequence, availableSequence);
+                    
                     break;
                 }
             }
@@ -86,6 +88,8 @@ public final class YieldingWaitStrategy implements WaitStrategy
                 final long elapsedTime = System.currentTimeMillis() - startTime;
                 if (elapsedTime > timeoutMs)
                 {
+                    System.out.printf("*** Stuck at sequence: %d, available: %d ***%n", sequence, availableSequence);
+                    
                     break;
                 }
             }
